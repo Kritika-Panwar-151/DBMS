@@ -59,5 +59,13 @@ select * from bank_customer;
 select * from depositer;
 select * from loan;
 desc loan;
-
-select  branch_name,count(branch_name) from bank_account group by branch_name;
+;
+SELECT customer_name
+FROM depositer
+WHERE accno IN (
+    SELECT accno 
+    FROM bank_account 
+    WHERE branch_name = 'SBI_ResidencyRoad'
+)
+GROUP BY customer_name
+HAVING COUNT(*) >= 2;
