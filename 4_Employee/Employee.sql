@@ -72,7 +72,6 @@ insert into Incentives values
 (5,'2020-02-15',8000),
 (6,'2021-04-10',4000);
 
-select * from Employee;
 select e.Empno from Employee e where exists(select e.Empno from Incentives i where e.Empno=i.Empno);
 
 select Ename from Employee where Empno in
