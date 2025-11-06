@@ -103,3 +103,5 @@ where e.empno=a.empno and e.deptno=d.deptno and a.pno=p.pno and p.ploc=d.dloc;
 select e.* from Employee e,Incentives i where e.empno=i.empno and
 e.sal+i.incentive_amount>=any(select sal from employee);
 
+select e.empno from Employee e where not exists(select * from incentives i where
+e.empno=i.empno);

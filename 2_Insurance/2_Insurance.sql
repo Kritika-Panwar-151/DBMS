@@ -68,3 +68,26 @@ select * from accident;
 select accident_date,location from accident;
 
 select driver_id from participated where damage_amount>=25000;
+
+
+
+select * from car order by year;
+
+select count(reg_num) from car c where exists(select * from participated p,accident a where
+c.reg_num=p.reg_num and p.report_num=a.report_num and c.model='Honda');
+
+select count(reg_num) from car c where exists(select * from participated p,accident a where
+c.reg_num=p.reg_num and p.report_num=a.report_num and a.accident_date like '2008%');
+
+select * from participated order by damage_amount desc;
+
+select avg(damage_amount) from participated;
+
+select name from person p,participated pa where p.driver_id=pa.driver_id and
+pa.damage_amount>(select avg(damage_amount) from participated);
+
+select max(damage_amount) from participated;
+
+delete from participated p where p.damage_amount<(select avg(avgDamage) from 
+(select avg(damage_amount)as avgDamage from participated) as t);
+select * from participated;
